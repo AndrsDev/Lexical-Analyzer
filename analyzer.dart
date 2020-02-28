@@ -47,7 +47,12 @@ class LexicalAnalyzer {
         v = 10 * v + this.char.codeUnitAt(0);
         read(text);
       } while (digits.contains(this.char));
-      return Num(v);
+      read(text);
+      if (this.char == "#EOF"){
+        return Num(v);
+      } else if (letters.contains(this.char)){
+        throw 'Sintax Error';
+      }
     }
 
     if(letters.contains(this.char)){
